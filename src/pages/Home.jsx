@@ -8,6 +8,7 @@ import Contact from '../components/Contact.jsx';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -15,34 +16,52 @@ const Home = () => {
     restDelta: 0.001
   });
 
-  // Simulate loading (remove this if you don't need it)
+  // Check if device is mobile for responsive adjustments
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Simulate loading with minimum display time for better UX
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 500);
+    }, 800);
     return () => clearTimeout(timer);
   }, []);
 
-  // Section animations variants
+  // Section animations variants with responsive adjustments
   const sectionVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: isMobile ? 30 : 50 },
     visible: { 
       opacity: 1, 
       y: 0,
       transition: { 
-        duration: 0.6, 
+        duration: isMobile ? 0.4 : 0.6, 
         ease: "easeOut" 
       }
     }
   };
 
-  // Loading spinner component
+  // Loading spinner component with responsive design
   if (isLoading) {
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-blue-600 to-purple-600">
-        <div className="text-center">
-          <div className="inline-block h-16 w-16 animate-spin rounded-full border-4 border-white border-t-transparent"></div>
-          <p className="mt-4 text-white text-lg font-semibold">Loading amazing content...</p>
+        <div className="text-center px-4">
+          {/* Animated Logo */}
+          <div className="mb-6 flex justify-center">
+            <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center animate-bounce">
+              <span className="text-3xl sm:text-4xl">🚀</span>
+            </div>
+          </div>
+          <div className="inline-block h-12 w-12 sm:h-16 sm:w-16 animate-spin rounded-full border-4 border-white border-t-transparent"></div>
+          <p className="mt-4 text-white text-base sm:text-lg font-semibold animate-pulse px-4">
+            Loading amazing content...
+          </p>
         </div>
       </div>
     );
@@ -50,9 +69,9 @@ const Home = () => {
 
   return (
     <>
-      {/* Progress Bar */}
+      {/* Progress Bar - Responsive height */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 z-50"
+        className="fixed top-0 left-0 right-0 h-0.5 sm:h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 z-50"
         style={{ scaleX, transformOrigin: "0%" }}
       />
 
@@ -63,15 +82,16 @@ const Home = () => {
         variants={{
           visible: {
             transition: {
-              staggerChildren: 0.2
+              staggerChildren: isMobile ? 0.1 : 0.2
             }
           }
         }}
+        className="overflow-x-hidden"
       >
         {/* Hero Section */}
         <motion.section
           variants={sectionVariants}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: isMobile ? 0.1 : 0.2 }}
         >
           <Hero />
         </motion.section>
@@ -79,7 +99,7 @@ const Home = () => {
         {/* Services Section */}
         <motion.section
           variants={sectionVariants}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: isMobile ? 0.1 : 0.2 }}
         >
           <Services />
         </motion.section>
@@ -87,7 +107,7 @@ const Home = () => {
         {/* Portfolio Section */}
         <motion.section
           variants={sectionVariants}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: isMobile ? 0.1 : 0.2 }}
         >
           <Portfolio />
         </motion.section>
@@ -95,7 +115,7 @@ const Home = () => {
         {/* Testimonials Section */}
         <motion.section
           variants={sectionVariants}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: isMobile ? 0.1 : 0.2 }}
         >
           <Testimonials />
         </motion.section>
@@ -103,25 +123,25 @@ const Home = () => {
         {/* Contact Section */}
         <motion.section
           variants={sectionVariants}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: isMobile ? 0.1 : 0.2 }}
         >
           <Contact />
         </motion.section>
       </motion.main>
 
-      {/* Back to Top Button */}
-      <BackToTopButton />
+      {/* Back to Top Button - Responsive positioning and sizing */}
+      <BackToTopButton isMobile={isMobile} />
     </>
   );
 };
 
-// Back to Top Button Component
-const BackToTopButton = () => {
+// Back to Top Button Component with responsive design
+const BackToTopButton = ({ isMobile }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
+      if (window.pageYOffset > (isMobile ? 200 : 300)) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -130,7 +150,7 @@ const BackToTopButton = () => {
 
     window.addEventListener('scroll', toggleVisibility);
     return () => window.removeEventListener('scroll', toggleVisibility);
-  }, []);
+  }, [isMobile]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -144,11 +164,13 @@ const BackToTopButton = () => {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 p-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
+          className={`fixed z-50 p-2.5 sm:p-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group ${
+            isMobile ? 'bottom-4 right-4' : 'bottom-8 right-8'
+          }`}
           aria-label="Back to top"
         >
           <svg 
-            className="h-6 w-6 transition-transform duration-300 group-hover:-translate-y-1" 
+            className={`h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:-translate-y-1`} 
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"
@@ -161,32 +183,8 @@ const BackToTopButton = () => {
   );
 };
 
-// Optional: Add metadata for SEO
-export const metadata = {
-  title: 'TechNova Solutions | Innovative Software Development Company',
-  description: 'Transform your business with cutting-edge software solutions. Web development, mobile apps, AI integration, and cloud services.',
-  keywords: 'software development, web development, mobile apps, AI, cloud services, tech company',
-  openGraph: {
-    title: 'TechNova Solutions - Innovative Software Development',
-    description: 'Transform your business with cutting-edge software solutions',
-    url: 'https://technova.com',
-    siteName: 'TechNova Solutions',
-    images: [
-      {
-        url: 'https://technova.com/og-image.jpg',
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'TechNova Solutions - Innovative Software Development',
-    description: 'Transform your business with cutting-edge software solutions',
-    images: ['https://technova.com/twitter-image.jpg'],
-  },
-};
+// Optional: Add viewport meta for better responsive behavior
+// Add this to your index.html or main HTML file:
+// <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
 export default Home;
