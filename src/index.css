@@ -10,7 +10,14 @@
   }
   
   body {
-    @apply font-sans antialiased;
+    @apply font-sans antialiased overflow-x-hidden;
+  }
+
+  img,
+  video,
+  svg {
+    max-width: 100%;
+    height: auto;
   }
 }
 

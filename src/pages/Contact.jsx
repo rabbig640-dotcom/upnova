@@ -210,7 +210,7 @@ const Contact = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
             {officeLocations.map((location, idx) => (
               <div key={idx} className="group text-center p-6 rounded-2xl bg-white shadow-md hover:shadow-xl transition-all hover:-translate-y-1">
                 <div className="text-5xl mb-3">{location.flag}</div>

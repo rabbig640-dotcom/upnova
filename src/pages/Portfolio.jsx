@@ -127,7 +127,7 @@ const Portfolio = () => {
             </div>
 
             {/* Stats Section */}
-            <div className="mt-16 grid grid-cols-2 gap-8 border-t border-white/20 pt-12 sm:grid-cols-4">
+            <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 border-t border-white/20 pt-12">
               <div className="text-center animate-in slide-in-from-bottom-8 delay-300">
                 <div className="text-3xl font-bold">{stats.projects}+</div>
                 <div className="text-sm text-white/80 mt-1">Projects Completed</div>

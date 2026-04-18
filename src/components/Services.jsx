@@ -199,7 +199,7 @@ const Services = () => {
 
         {/* Stats Banner */}
         <div className="mb-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-6 text-white">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 text-center">
             <div>
               <div className="text-3xl font-bold">{counters.total || 0}+</div>
               <div className="text-sm opacity-90">Projects Completed</div>

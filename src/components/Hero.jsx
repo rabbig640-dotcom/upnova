@@ -175,7 +175,7 @@ const Hero = () => {
           </div>
 
           {/* Enhanced Stats with Fixed Colors */}
-          <div className="mt-16 grid grid-cols-2 gap-6 border-t border-gray-200 pt-12 sm:grid-cols-4">
+          <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 border-t border-gray-200 pt-12">
             {stats.map((stat, idx) => {
               const Icon = stat.icon;
               const colorClasses = getColorClasses(stat.color);
