@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink, Code, Eye, Heart, Share2, Star, TrendingUp, Award } from 'lucide-react';
+import { ExternalLink, Code, Eye, Heart, Star, TrendingUp, Award } from 'lucide-react';
 
 const projects = [
   {

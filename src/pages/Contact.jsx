@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ContactComponent from '../components/Contact.jsx';
-import { Mail, Phone, MapPin, Clock, ArrowRight, Send, Sparkles, MessageCircle, Globe, Users, Award } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, ArrowRight, Sparkles, MessageCircle, Globe, Users, Award } from 'lucide-react';
 
 const Contact = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });

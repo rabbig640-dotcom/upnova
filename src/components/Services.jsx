@@ -154,7 +154,6 @@ const ServiceCard = ({ service, index }) => {
 };
 
 const Services = () => {
-  const [hoveredService, setHoveredService] = useState(null);
   const [counters, setCounters] = useState({});
 
   // Animated counter for total projects
@@ -227,8 +226,6 @@ const Services = () => {
               key={idx} 
               service={service} 
               index={idx}
-              onMouseEnter={() => setHoveredService(idx)}
-              onMouseLeave={() => setHoveredService(null)}
             />
           ))}
         </div>

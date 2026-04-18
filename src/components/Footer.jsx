@@ -17,15 +17,15 @@ const Footer = () => {
               Transforming ideas into innovative software solutions that drive business growth.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition">
+              <button className="text-gray-400 hover:text-blue-400 transition">
                 <Code size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition">
+              </button>
+              <button className="text-gray-400 hover:text-blue-400 transition">
                 <Share2 size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition">
+              </button>
+              <button className="text-gray-400 hover:text-blue-400 transition">
                 <Users size={20} />
-              </a>
+              </button>
             </div>
           </div>
 
@@ -45,11 +45,11 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Our Services</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition">Web Development</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition">Mobile Apps</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition">Cloud Solutions</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition">AI Integration</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition">Cybersecurity</a></li>
+              <li><Link to="/services" className="text-gray-400 hover:text-blue-400 transition">Web Development</Link></li>
+              <li><Link to="/services" className="text-gray-400 hover:text-blue-400 transition">Mobile Apps</Link></li>
+              <li><Link to="/services" className="text-gray-400 hover:text-blue-400 transition">Cloud Solutions</Link></li>
+              <li><Link to="/services" className="text-gray-400 hover:text-blue-400 transition">AI Integration</Link></li>
+              <li><Link to="/services" className="text-gray-400 hover:text-blue-400 transition">Cybersecurity</Link></li>
             </ul>
           </div>
 

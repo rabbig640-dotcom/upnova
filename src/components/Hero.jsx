@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronRight, Sparkles, Code, Cloud, Zap, Play, Star, Award, Users, Rocket, Shield, CheckCircle } from 'lucide-react';
+import { ArrowRight, ChevronRight, Sparkles, Code, Cloud, Play, Star, Award, Users, Rocket, Shield } from 'lucide-react';
 
 const Hero = () => {
   const [currentWord, setCurrentWord] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [typedText, setTypedText] = useState('');
-  const [isTyping, setIsTyping] = useState(true);
   const words = ['Innovative', 'Scalable', 'Secure', 'Future-Ready'];
 
   // Rotating words effect
@@ -15,7 +13,7 @@ const Hero = () => {
       setCurrentWord((prev) => (prev + 1) % words.length);
     }, 2000);
     return () => clearInterval(interval);
-  }, []);
+  }, [words.length]);
 
   // Mouse move effect for parallax
   useEffect(() => {

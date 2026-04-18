@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import ServicesComponent from '../components/Services.jsx';
 import { CheckCircle, Code, Server, Database, Cloud, Shield, Bot, ArrowRight, Award, Clock, Users, TrendingUp } from 'lucide-react';
 
@@ -64,12 +64,12 @@ const Services = () => {
     { name: 'Angular', icon: '🅰️', category: 'Frontend', popularity: 78 },
   ];
 
-  const stats = [
+  const stats = useMemo(() => [
     { value: 150, label: 'Projects Completed', icon: Award, suffix: '+' },
     { value: 98, label: 'Client Satisfaction', icon: TrendingUp, suffix: '%' },
     { value: 50, label: 'Expert Developers', icon: Users, suffix: '+' },
     { value: 24, label: 'Support Hours', icon: Clock, suffix: '/7' },
-  ];
+  ], []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -91,7 +91,7 @@ const Services = () => {
       });
     }, 500);
     return () => clearTimeout(timer);
-  }, []);
+  }, [stats]);
 
   return (
     <>

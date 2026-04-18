@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PortfolioComponent from '../components/Portfolio.jsx';
-import { Award, TrendingUp, Users, Code, ArrowRight, Play, Star, Sparkles } from 'lucide-react';
+import { Award, TrendingUp, Users, ArrowRight, Play, Star, Sparkles } from 'lucide-react';
 
 const Portfolio = () => {
   const [stats, setStats] = useState({
@@ -176,11 +176,6 @@ const Portfolio = () => {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {successStories.map((story, idx) => {
               const Icon = story.icon;
-              const colors = {
-                blue: "from-blue-500 to-blue-600",
-                purple: "from-purple-500 to-purple-600",
-                pink: "from-pink-500 to-pink-600"
-              };
               return (
                 <div key={idx} className="group relative overflow-hidden rounded-2xl bg-gradient-to-r p-8 text-white shadow-lg transition-all hover:shadow-2xl hover:-translate-y-1" style={{ background: `linear-gradient(135deg, ${story.color === 'blue' ? '#3b82f6' : story.color === 'purple' ? '#8b5cf6' : '#ec4899'} 0%, ${story.color === 'blue' ? '#1d4ed8' : story.color === 'purple' ? '#6d28d9' : '#be185d'} 100%)` }}>
                   <div className="absolute top-0 right-0 opacity-10">
